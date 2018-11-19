@@ -22,6 +22,8 @@ package org.apache.skywalking.apm.plugin.resin.v4;
 import com.caucho.server.http.CauchoRequest;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import io.skywalking.apm.plugin.resin.v4.ResinV4Interceptor;
 import org.apache.skywalking.apm.agent.core.context.SW3CarrierItem;
 import org.apache.skywalking.apm.agent.core.context.trace.SpanLayer;
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.EnhancedInstance;
