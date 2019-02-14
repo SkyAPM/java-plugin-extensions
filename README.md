@@ -1,4 +1,4 @@
-# SkyWalking javaagent plugin extensions
+# Java agent plugin extensions for Apache SkyWalking
 Due to license incompatibilities/restrictions, some plugins are hosted in here.
 
 Including
