@@ -35,11 +35,13 @@ public class OracleCallableInstrumentation extends ClassInstanceMethodsEnhancePl
     public static final String CALLABLE_STATEMENT_WRAPPER_CLASS = "oracle.jdbc.driver.OracleCallableStatementWrapper";
     public static final String T4C_CALLABLE_STATMENT_CLASS = "oracle.jdbc.driver.T4CCallableStatement";
 
-    @Override protected ConstructorInterceptPoint[] getConstructorsInterceptPoints() {
+    @Override
+    public ConstructorInterceptPoint[] getConstructorsInterceptPoints() {
         return new ConstructorInterceptPoint[0];
     }
 
-    @Override protected InstanceMethodsInterceptPoint[] getInstanceMethodsInterceptPoints() {
+    @Override
+    public InstanceMethodsInterceptPoint[] getInstanceMethodsInterceptPoints() {
         return new InstanceMethodsInterceptPoint[] {
             new InstanceMethodsInterceptPoint() {
                 @Override public ElementMatcher<MethodDescription> getMethodsMatcher() {

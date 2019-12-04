@@ -34,12 +34,12 @@ public class ResinV4Instrumentation extends ClassInstanceMethodsEnhancePluginDef
     private static final String METHOD_INTERCET_CLASS = "io.skywalking.apm.plugin.resin.v4.ResinV4Interceptor";
 
     @Override
-    protected ConstructorInterceptPoint[] getConstructorsInterceptPoints() {
+    public ConstructorInterceptPoint[] getConstructorsInterceptPoints() {
         return null;
     }
 
     @Override
-    protected InstanceMethodsInterceptPoint[] getInstanceMethodsInterceptPoints() {
+    public InstanceMethodsInterceptPoint[] getInstanceMethodsInterceptPoints() {
         return new InstanceMethodsInterceptPoint[] {
             new InstanceMethodsInterceptPoint() {
                 @Override

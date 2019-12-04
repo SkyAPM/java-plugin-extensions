@@ -20,18 +20,26 @@
 package org.apache.skywalking.apm.plugin.resin.v4;
 
 import com.caucho.server.http.CauchoRequest;
+import io.skywalking.apm.plugin.resin.v4.ResinV4Interceptor;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
-
-import io.skywalking.apm.plugin.resin.v4.ResinV4Interceptor;
-import org.apache.skywalking.apm.agent.core.context.SW3CarrierItem;
+import org.apache.skywalking.apm.agent.core.context.SW6CarrierItem;
+import org.apache.skywalking.apm.agent.core.context.trace.AbstractTracingSpan;
+import org.apache.skywalking.apm.agent.core.context.trace.LogDataEntity;
 import org.apache.skywalking.apm.agent.core.context.trace.SpanLayer;
+import org.apache.skywalking.apm.agent.core.context.trace.TraceSegment;
+import org.apache.skywalking.apm.agent.core.context.trace.TraceSegmentRef;
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.EnhancedInstance;
+import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.MethodInterceptResult;
 import org.apache.skywalking.apm.agent.test.helper.SegmentHelper;
+import org.apache.skywalking.apm.agent.test.helper.SegmentRefHelper;
 import org.apache.skywalking.apm.agent.test.helper.SpanHelper;
+import org.apache.skywalking.apm.agent.test.tools.AgentServiceRule;
 import org.apache.skywalking.apm.agent.test.tools.SegmentStorage;
 import org.apache.skywalking.apm.agent.test.tools.SegmentStoragePoint;
 import org.apache.skywalking.apm.agent.test.tools.SpanAssert;
+import org.apache.skywalking.apm.agent.test.tools.TracingSegmentRunner;
+import org.apache.skywalking.apm.network.trace.component.ComponentsDefine;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -39,20 +47,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.modules.junit4.PowerMockRunnerDelegate;
-import org.apache.skywalking.apm.agent.core.context.trace.AbstractTracingSpan;
-import org.apache.skywalking.apm.agent.core.context.trace.LogDataEntity;
-import org.apache.skywalking.apm.agent.core.context.trace.TraceSegment;
-import org.apache.skywalking.apm.agent.core.context.trace.TraceSegmentRef;
-import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.MethodInterceptResult;
-import org.apache.skywalking.apm.agent.test.helper.SegmentRefHelper;
-import org.apache.skywalking.apm.agent.test.tools.AgentServiceRule;
-import org.apache.skywalking.apm.agent.test.tools.TracingSegmentRunner;
-import org.apache.skywalking.apm.network.trace.component.ComponentsDefine;
 
+import static org.apache.skywalking.apm.agent.test.tools.SpanAssert.assertComponent;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.when;
-import static org.apache.skywalking.apm.agent.test.tools.SpanAssert.assertComponent;
 
 /**
  * Created by Baiyang on 2017/5/6.
@@ -111,7 +110,7 @@ public class ResinV4InterceptorTest {
 
     @Test
     public void testWithSerializedContextData() throws Throwable {
-        when(request.getHeader(SW3CarrierItem.HEADER_NAME)).thenReturn("1.444.555|3|1|1|#192.168.1.8:18002|#/portal/|#/testEntrySpan|#AQA*#AQA*Et0We0tQNQA*");
+        when(request.getHeader(SW6CarrierItem.HEADER_NAME)).thenReturn("1-I0FRQSojQVFBKkV0MFdlMHRRTlFBKg==-MS4yMzQuMTEx-3-1-1-IzE5Mi4xNjguMS44OjE4MDAy-Iy9wb3J0YWwv-Iy90ZXN0RW50cnlTcGFu");
 
         interceptor.beforeMethod(enhancedInstance, null, arguments, argumentType, methodInterceptResult);
         interceptor.afterMethod(enhancedInstance, null, arguments, argumentType, null);
@@ -141,9 +140,9 @@ public class ResinV4InterceptorTest {
     }
 
     private void assertTraceSegmentRef(TraceSegmentRef ref) {
-        assertThat(SegmentRefHelper.getEntryApplicationInstanceId(ref), is(1));
+        assertThat(SegmentRefHelper.getEntryServiceInstanceId(ref), is(1));
         assertThat(SegmentRefHelper.getSpanId(ref), is(3));
-        assertThat(SegmentRefHelper.getTraceSegmentId(ref).toString(), is("1.444.555"));
+        assertThat(SegmentRefHelper.getTraceSegmentId(ref).toString(), is("1.234.111"));
     }
 
     private void assertHttpSpan(AbstractTracingSpan span) {
