@@ -23,7 +23,6 @@ import com.caucho.server.http.CauchoRequest;
 import io.skywalking.apm.plugin.resin.v4.ResinV4Interceptor;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.skywalking.apm.agent.core.context.SW6CarrierItem;
 import org.apache.skywalking.apm.agent.core.context.trace.AbstractTracingSpan;
 import org.apache.skywalking.apm.agent.core.context.trace.LogDataEntity;
 import org.apache.skywalking.apm.agent.core.context.trace.SpanLayer;
@@ -108,20 +107,6 @@ public class ResinV4InterceptorTest {
         assertHttpSpan(spans.get(0));
     }
 
-    @Test
-    public void testWithSerializedContextData() throws Throwable {
-        when(request.getHeader(SW6CarrierItem.HEADER_NAME)).thenReturn("1-I0FRQSojQVFBKkV0MFdlMHRRTlFBKg==-MS4yMzQuMTEx-3-1-1-IzE5Mi4xNjguMS44OjE4MDAy-Iy9wb3J0YWwv-Iy90ZXN0RW50cnlTcGFu");
-
-        interceptor.beforeMethod(enhancedInstance, null, arguments, argumentType, methodInterceptResult);
-        interceptor.afterMethod(enhancedInstance, null, arguments, argumentType, null);
-
-        assertThat(segmentStorage.getTraceSegments().size(), is(1));
-        TraceSegment traceSegment = segmentStorage.getTraceSegments().get(0);
-        List<AbstractTracingSpan> spans = SegmentHelper.getSpans(traceSegment);
-
-        assertHttpSpan(spans.get(0));
-        assertTraceSegmentRef(traceSegment.getRefs().get(0));
-    }
 
     @Test
     public void testWithOccurException() throws Throwable {
@@ -140,7 +125,6 @@ public class ResinV4InterceptorTest {
     }
 
     private void assertTraceSegmentRef(TraceSegmentRef ref) {
-        assertThat(SegmentRefHelper.getEntryServiceInstanceId(ref), is(1));
         assertThat(SegmentRefHelper.getSpanId(ref), is(3));
         assertThat(SegmentRefHelper.getTraceSegmentId(ref).toString(), is("1.234.111"));
     }
