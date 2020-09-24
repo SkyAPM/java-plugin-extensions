@@ -8,5 +8,7 @@ Including
 
 To be clear, these plugins have no license issue, but need Apache 2.0 uncompatible license Jar file to compile, which is not allowed to do in Apache. 
 
+2.0+ releases require SkyWalking 8.2.0+
+
 # License
 Apache 2.0
