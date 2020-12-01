@@ -11,5 +11,5 @@ before_install:
   - cd ..
 
 install:
-  - ./mvnw clean install
+  - mvn clean install
 
