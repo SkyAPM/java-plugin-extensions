@@ -39,6 +39,10 @@ public class PreparedStatementExecuteMethodsInterceptor implements InstanceMetho
   
     public static final StringTag SQL_PARAMETERS = new StringTag("db.sql.parameters");
 
+    /**
+     * 2020-12-01 ray_bi modified
+     * Add a new section to trace sql parameter
+     */
     @Override
     public final void beforeMethod(EnhancedInstance objInst, Method method, Object[] allArguments,
         Class<?>[] argumentsTypes,

@@ -20,7 +20,10 @@ package io.skywalking.apm.plugin.jdbc.oracle.define;
 
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.InstanceMethodsInterceptPoint;
 import org.apache.skywalking.apm.plugin.jdbc.PSSetterDefinitionOfJDBCInstrumentation;
-
+/**
+ * @author ray_bi
+ * @since 2020-12-01
+ */
 public class OraclePrepareStatementSetterInstrumentation extends OraclePrepareStatementInstrumentation {
 
 

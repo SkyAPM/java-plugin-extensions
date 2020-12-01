@@ -11,6 +11,5 @@ before_install:
   - cd ..
 
 install:
-  - jdk_switcher use oraclejdk8
   - ./mvnw clean install
 
