@@ -17,6 +17,8 @@
 oracle-10.x=io.skywalking.apm.plugin.jdbc.oracle.define.DriverInstrumentation
 oracle-10.x=io.skywalking.apm.plugin.jdbc.oracle.define.ConnectionInstrumentation
 oracle-10.x=io.skywalking.apm.plugin.jdbc.oracle.define.OracleCallableInstrumentation
-oracle-10.x=io.skywalking.apm.plugin.jdbc.oracle.define.OraclePrepareStatementInstrumentation
 oracle-10.x=io.skywalking.apm.plugin.jdbc.oracle.define.OracleStatementInstrumentation
+oracle-10.x=io.skywalking.apm.plugin.jdbc.oracle.define.OraclePrepareStatementInstrumentation
 oracle-10.x=io.skywalking.apm.plugin.jdbc.oracle.define.OraclePrepareStatementSetterInstrumentation
+oracle-10.x=io.skywalking.apm.plugin.jdbc.oracle.define.OraclePreparedStatementNullSetterInstrumentation
+oracle-10.x=io.skywalking.apm.plugin.jdbc.oracle.define.OraclePreparedStatementIgnoredSetterInstrumentation
