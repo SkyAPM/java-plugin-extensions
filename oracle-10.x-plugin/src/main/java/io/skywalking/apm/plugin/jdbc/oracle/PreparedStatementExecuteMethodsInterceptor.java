@@ -85,7 +85,7 @@ public class PreparedStatementExecuteMethodsInterceptor implements InstanceMetho
     @Override public final void handleMethodException(EnhancedInstance objInst, Method method, Object[] allArguments,
         Class<?>[] argumentsTypes, Throwable t) {
         StatementEnhanceInfos cacheObject = (StatementEnhanceInfos)objInst.getSkyWalkingDynamicField();
-        if (cacheObject.getConnectionInfo() != null) {
+        if (cacheObject != null && cacheObject.getConnectionInfo() != null) {
             ContextManager.activeSpan().errorOccurred().log(t);
         }
     }
