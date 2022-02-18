@@ -33,14 +33,14 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <ojdbc14.version>10.2.0.4.0</ojdbc14.version>
+        <ojdbc8.version>12.2.0.1</ojdbc8.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.oracle</groupId>
-            <artifactId>ojdbc14</artifactId>
-            <version>${ojdbc14.version}</version>
+            <artifactId>ojdbc8</artifactId>
+            <version>${ojdbc8.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

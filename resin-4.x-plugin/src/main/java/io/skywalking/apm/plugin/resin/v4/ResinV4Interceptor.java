@@ -61,7 +61,7 @@ public class ResinV4Interceptor implements InstanceMethodsAroundInterceptor {
         AbstractSpan span = ContextManager.activeSpan();
 
         if (response.getStatus() >= 400) {
-            Tags.STATUS_CODE.set(span, Integer.toString(response.getStatus()));
+            Tags.HTTP_RESPONSE_STATUS_CODE.set(span, response.getStatus());
             span.errorOccurred();
         }
         ContextManager.stopSpan();
