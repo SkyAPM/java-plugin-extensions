@@ -92,7 +92,7 @@ public class PreparedStatementExecuteMethodsInterceptor implements InstanceMetho
     }
 
     private String buildOperationName(ConnectionInfo connectionInfo, String methodName, String statementName) {
-        return connectionInfo.getDBType() + "/JDBI/" + statementName + "/" + methodName;
+        return connectionInfo.getDBType() + "/JDBC/" + statementName + "/" + methodName;
     }
 
 
