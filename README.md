@@ -7,9 +7,7 @@ Including
 1. Oracle JDBC Driver
 1. Aliyun ONS 1.x
 
-To be clear, these plugins have no license issue, but need Apache 2.0 uncompatible license Jar file to compile, which is not allowed to do in Apache. 
-
-2.0+ releases require SkyWalking 8.2.0+
+To be clear, these plugins have no license issue, but need Apache 2.0 uncompatible license Jar file to compile, which is not allowed to do in Apache.
 
 # License
 Apache 2.0
