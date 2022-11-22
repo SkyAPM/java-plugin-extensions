@@ -50,7 +50,7 @@ public class PreparedStatementExecuteMethodsInterceptor implements InstanceMetho
         if (cacheObject != null && cacheObject.getConnectionInfo() != null) {
             ConnectionInfo connectInfo = cacheObject.getConnectionInfo();
             AbstractSpan span = ContextManager.createExitSpan(buildOperationName(connectInfo, method.getName(), cacheObject.getStatementName()), connectInfo.getDatabasePeer());
-            Tags.DB_TYPE.set(span, "sql");
+            Tags.DB_TYPE.set(span, connectInfo.getDBType());
             Tags.DB_INSTANCE.set(span, connectInfo.getDatabaseName());
             Tags.DB_STATEMENT.set(span, cacheObject.getSql());
             span.setComponent(connectInfo.getComponent());
