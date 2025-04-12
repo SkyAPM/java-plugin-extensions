@@ -37,7 +37,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <resin.version>3.0.9</resin.version>
+        <resin.version>4.0.59</resin.version>
         <javax-servlet-api.version>3.0.1</javax-servlet-api.version>
     </properties>
 
